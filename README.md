@@ -10,7 +10,7 @@ Tagovi u titlovima ostaju nepromenjeni pri konverziji u ćirilicu:
 
 Podržan je drag'n'drop i obrada više fajlova odjednom.
 
-![image](https://user-images.githubusercontent.com/114086664/191576866-27aec325-ddeb-4a5c-9763-e02875729e3a.png)
+![image](https://user-images.githubusercontent.com/114086664/191577268-9d3abb89-f9c0-4170-b8bb-00a62ce97367.png)
 
 ## .NET Desktop Runtime 6.0.9
 

@@ -25,7 +25,7 @@ namespace SubConvert
             s = s.Replace("{/у}", "{/u}");
 
             s = s.Replace("</фонт>", "</font>");
-            Regex r = new("<(?<fontTag>фонт цолор=\"(.+)\")>");
+            Regex r = new("<(?<fontTag>фонт цолор=(\"?)(.+)(\"?))>");
 
             s = r.Replace(s, ProcessFontTag);
 

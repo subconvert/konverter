@@ -8,6 +8,8 @@ Tagovi u titlovima ostaju nepromenjeni pri konverziji u ćirilicu:
 `Underline:	<u>…</u>, {u}…{/u}`
 `Font Color:	<font color=“white”>…</font>`
 
+Podržan je drag'n'drop i obrada više fajlova odjednom.
+
 ## .NET Desktop Runtime 6.0.9
 
 Konverter je .NET 6 winforms aplikacija. Za pokretanje je neophodno instalirati odgovarajući x86/x64 .NET Desktop Runtime:

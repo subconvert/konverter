@@ -10,6 +10,8 @@ Tagovi u titlovima ostaju nepromenjeni pri konverziji u ćirilicu:
 
 Podržan je drag'n'drop i obrada više fajlova odjednom.
 
+![image](https://user-images.githubusercontent.com/114086664/191576866-27aec325-ddeb-4a5c-9763-e02875729e3a.png)
+
 ## .NET Desktop Runtime 6.0.9
 
 Konverter je .NET 6 winforms aplikacija. Za pokretanje je neophodno instalirati odgovarajući x86/x64 .NET Desktop Runtime:

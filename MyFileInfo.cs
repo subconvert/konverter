@@ -13,5 +13,12 @@ namespace SubConvert
 
         [Display(Name = "Енкодинг", Order = 2)]
         public string FileEncoding { get; set; }
+
+        public MyFileInfo()
+        {
+            Folder = string.Empty;
+            FileName = string.Empty;
+            FileEncoding = string.Empty;
+        }
     }
 }

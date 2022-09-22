@@ -68,19 +68,20 @@
             this.dgvFileList.ShowEditingIcon = false;
             this.dgvFileList.Size = new System.Drawing.Size(824, 526);
             this.dgvFileList.TabIndex = 0;
+            this.dgvFileList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvFileList_CellMouseDoubleClick);
             // 
             // contextMenuClipboard
             // 
             this.contextMenuClipboard.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemCopy});
             this.contextMenuClipboard.Name = "contextMenuClipboard";
-            this.contextMenuClipboard.Size = new System.Drawing.Size(181, 48);
-            this.contextMenuClipboard.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuClipboard_ItemClicked);
+            this.contextMenuClipboard.Size = new System.Drawing.Size(119, 26);
+            this.contextMenuClipboard.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ContextMenuClipboard_ItemClicked);
             // 
             // toolStripMenuItemCopy
             // 
             this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-            this.toolStripMenuItemCopy.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemCopy.Size = new System.Drawing.Size(118, 22);
             this.toolStripMenuItemCopy.Text = "Копирај";
             // 
             // FileListForm

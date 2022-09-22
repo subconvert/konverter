@@ -115,7 +115,7 @@ namespace SubConvert
             return result;
         }
 
-        private static string WriteFile(string folder, string fileName, string content, Encoding destinationEncoding)
+        public static string WriteFile(string folder, string fileName, string content, Encoding destinationEncoding)
         {
             string outputFileName = Path.Combine(folder, fileName);
             if (File.Exists(Path.Combine(folder, fileName)))

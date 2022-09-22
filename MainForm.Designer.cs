@@ -33,11 +33,13 @@
             this.btnAutomatic = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.титловиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.отвориФајлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.конверзијаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windows1250UTF8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windows1251UTF8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windows1252UTF8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uTF8ANSIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.аутоматскаДетекцијаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограмуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1.SuspendLayout();
@@ -85,55 +87,71 @@
             // титловиToolStripMenuItem
             // 
             this.титловиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.windows1250UTF8ToolStripMenuItem,
-            this.windows1251UTF8ToolStripMenuItem,
-            this.windows1252UTF8ToolStripMenuItem,
-            this.uTF8ANSIToolStripMenuItem,
+            this.отвориФајлToolStripMenuItem,
             this.toolStripSeparator1,
-            this.аутоматскаДетекцијаToolStripMenuItem});
+            this.конверзијаToolStripMenuItem});
             this.титловиToolStripMenuItem.Name = "титловиToolStripMenuItem";
             this.титловиToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.титловиToolStripMenuItem.Text = "Титлови";
             // 
-            // windows1250UTF8ToolStripMenuItem
+            // отвориФајлToolStripMenuItem
             // 
-            this.windows1250UTF8ToolStripMenuItem.Name = "windows1250UTF8ToolStripMenuItem";
-            this.windows1250UTF8ToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.windows1250UTF8ToolStripMenuItem.Text = "windows-1250 -> UTF-8";
-            this.windows1250UTF8ToolStripMenuItem.Click += new System.EventHandler(this.Windows1250UTF8ToolStripMenuItem_Click);
-            // 
-            // windows1251UTF8ToolStripMenuItem
-            // 
-            this.windows1251UTF8ToolStripMenuItem.Name = "windows1251UTF8ToolStripMenuItem";
-            this.windows1251UTF8ToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.windows1251UTF8ToolStripMenuItem.Text = "windows-1251 -> UTF-8";
-            this.windows1251UTF8ToolStripMenuItem.Click += new System.EventHandler(this.Windows1251UTF8ToolStripMenuItem_Click);
-            // 
-            // windows1252UTF8ToolStripMenuItem
-            // 
-            this.windows1252UTF8ToolStripMenuItem.Name = "windows1252UTF8ToolStripMenuItem";
-            this.windows1252UTF8ToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.windows1252UTF8ToolStripMenuItem.Text = "windows-1252 -> UTF-8";
-            this.windows1252UTF8ToolStripMenuItem.Click += new System.EventHandler(this.Windows1252UTF8ToolStripMenuItem_Click);
-            // 
-            // uTF8ANSIToolStripMenuItem
-            // 
-            this.uTF8ANSIToolStripMenuItem.Name = "uTF8ANSIToolStripMenuItem";
-            this.uTF8ANSIToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.uTF8ANSIToolStripMenuItem.Text = "UTF-8 -> ANSI";
-            this.uTF8ANSIToolStripMenuItem.Click += new System.EventHandler(this.UTF8ANSIToolStripMenuItem_Click);
+            this.отвориФајлToolStripMenuItem.Name = "отвориФајлToolStripMenuItem";
+            this.отвориФајлToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.отвориФајлToolStripMenuItem.Text = "Отвори фајл";
+            this.отвориФајлToolStripMenuItem.Click += new System.EventHandler(this.ОтвориФајлToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(197, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(212, 6);
+            // 
+            // конверзијаToolStripMenuItem
+            // 
+            this.конверзијаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.windows1250UTF8ToolStripMenuItem,
+            this.windows1251UTF8ToolStripMenuItem,
+            this.windows1252UTF8ToolStripMenuItem,
+            this.uTF8ANSIToolStripMenuItem,
+            this.аутоматскаДетекцијаToolStripMenuItem});
+            this.конверзијаToolStripMenuItem.Name = "конверзијаToolStripMenuItem";
+            this.конверзијаToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.конверзијаToolStripMenuItem.Text = "Конверзија више фајлова";
+            // 
+            // windows1250UTF8ToolStripMenuItem
+            // 
+            this.windows1250UTF8ToolStripMenuItem.Name = "windows1250UTF8ToolStripMenuItem";
+            this.windows1250UTF8ToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.windows1250UTF8ToolStripMenuItem.Text = "windows-1250 -> UTF-8";
+            this.windows1250UTF8ToolStripMenuItem.Click += new System.EventHandler(this.Windows1250UTF8ToolStripMenuItem_Click_1);
+            // 
+            // windows1251UTF8ToolStripMenuItem
+            // 
+            this.windows1251UTF8ToolStripMenuItem.Name = "windows1251UTF8ToolStripMenuItem";
+            this.windows1251UTF8ToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.windows1251UTF8ToolStripMenuItem.Text = "windows-1251 -> UTF-8";
+            this.windows1251UTF8ToolStripMenuItem.Click += new System.EventHandler(this.Windows1251UTF8ToolStripMenuItem_Click_1);
+            // 
+            // windows1252UTF8ToolStripMenuItem
+            // 
+            this.windows1252UTF8ToolStripMenuItem.Name = "windows1252UTF8ToolStripMenuItem";
+            this.windows1252UTF8ToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.windows1252UTF8ToolStripMenuItem.Text = "windows-1252 -> UTF-8";
+            this.windows1252UTF8ToolStripMenuItem.Click += new System.EventHandler(this.Windows1252UTF8ToolStripMenuItem_Click_1);
+            // 
+            // uTF8ANSIToolStripMenuItem
+            // 
+            this.uTF8ANSIToolStripMenuItem.Name = "uTF8ANSIToolStripMenuItem";
+            this.uTF8ANSIToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.uTF8ANSIToolStripMenuItem.Text = "UTF-8 -> ANSI";
+            this.uTF8ANSIToolStripMenuItem.Click += new System.EventHandler(this.UTF8ANSIToolStripMenuItem_Click_1);
             // 
             // аутоматскаДетекцијаToolStripMenuItem
             // 
             this.аутоматскаДетекцијаToolStripMenuItem.Name = "аутоматскаДетекцијаToolStripMenuItem";
-            this.аутоматскаДетекцијаToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.аутоматскаДетекцијаToolStripMenuItem.Text = "аутоматска детекција";
-            this.аутоматскаДетекцијаToolStripMenuItem.Click += new System.EventHandler(this.АутоматскаДетекцијаToolStripMenuItem_Click);
+            this.аутоматскаДетекцијаToolStripMenuItem.Size = new System.Drawing.Size(299, 22);
+            this.аутоматскаДетекцијаToolStripMenuItem.Text = "Аутоматска детекција улазног енкодинга";
+            this.аутоматскаДетекцијаToolStripMenuItem.Click += new System.EventHandler(this.АутоматскаДетекцијаToolStripMenuItem_Click_1);
             // 
             // оПрограмуToolStripMenuItem
             // 
@@ -172,12 +190,14 @@
         private Button btnAutomatic;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem титловиToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem оПрограмуToolStripMenuItem;
+        private ToolStripMenuItem отвориФајлToolStripMenuItem;
+        private ToolStripMenuItem конверзијаToolStripMenuItem;
         private ToolStripMenuItem windows1250UTF8ToolStripMenuItem;
         private ToolStripMenuItem windows1251UTF8ToolStripMenuItem;
-        private ToolStripMenuItem аутоматскаДетекцијаToolStripMenuItem;
-        private ToolStripMenuItem uTF8ANSIToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem windows1252UTF8ToolStripMenuItem;
-        private ToolStripMenuItem оПрограмуToolStripMenuItem;
+        private ToolStripMenuItem uTF8ANSIToolStripMenuItem;
+        private ToolStripMenuItem аутоматскаДетекцијаToolStripMenuItem;
     }
 }

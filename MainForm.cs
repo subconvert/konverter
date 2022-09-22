@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using UtfUnknown;
 
 namespace SubConvert
 {
@@ -74,35 +75,58 @@ namespace SubConvert
             }
         }
 
-        private void Windows1250UTF8ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectFiles(SourceEncoding.WIN1250);
-        }
 
-        private void Windows1251UTF8ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectFiles(SourceEncoding.WIN1251);
-        }
-
-        private void Windows1252UTF8ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectFiles(SourceEncoding.WIN1252);
-        }
-
-        private void UTF8ANSIToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectFiles(SourceEncoding.UTF8);
-        }
-
-        private void АутоматскаДетекцијаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectFiles(SourceEncoding.AUTODETECT);
-        }
 
         private void ОПрограмуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm af = new();
             af.ShowDialog();
+        }
+
+        private void ОтвориФајлToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using OpenFileDialog ofd = new() { Multiselect = false };
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = ofd.FileName;
+
+                DetectionResult detectionResult = CharsetDetector.DetectFromFile(filePath);
+
+                MyFileInfo mfi = new()
+                {
+                    FileEncoding = detectionResult.Detected.EncodingName,
+                    FileName = Path.GetFileName(filePath),
+                    Folder = Path.GetDirectoryName(filePath) ?? string.Empty
+                };
+
+                FileViewForm fvf = new(mfi);
+                fvf.Show();
+            }
+        }
+
+        private void Windows1250UTF8ToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            SelectFiles(SourceEncoding.WIN1250);
+        }
+
+        private void Windows1251UTF8ToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            SelectFiles(SourceEncoding.WIN1251);
+        }
+
+        private void Windows1252UTF8ToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            SelectFiles(SourceEncoding.WIN1252);
+        }
+
+        private void UTF8ANSIToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            SelectFiles(SourceEncoding.UTF8);
+        }
+
+        private void АутоматскаДетекцијаToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            SelectFiles(SourceEncoding.AUTODETECT);
         }
     }
 }

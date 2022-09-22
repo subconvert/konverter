@@ -22,19 +22,18 @@ namespace SubConvert
             };
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                bool ok = false;
                 try
                 {
-                    ConversionTools.ConvertFrom(sourceEncoding, ofd.FileNames);
+                    List<string> result = ConversionTools.ConvertFrom(sourceEncoding, ofd.FileNames);
 
-                    ok = true;
+                    FileListForm flf = new(result);
+                    flf.Show();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error message: {ex.Message}\n\n" +
-                    $"Details:\n\n{ex.StackTrace}");
+                    ErrorMessageForm emf = new(ex.Message, ex.StackTrace ?? string.Empty);
+                    emf.ShowDialog();
                 }
-                if (ok) MessageBox.Show("Готово.");
             }
         }
 
@@ -47,21 +46,20 @@ namespace SubConvert
         {
             if (e.Data != null)
             {
-                bool ok = false;
                 try
                 {
                     string[] droppedFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                    ConversionTools.ConvertFrom(SourceEncoding.AUTODETECT, droppedFiles);
+                    List<string> result = ConversionTools.ConvertFrom(SourceEncoding.AUTODETECT, droppedFiles);
 
-                    ok = true;
+                    FileListForm flf = new(result);
+                    flf.Show();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error message: {ex.Message}\n\n" +
-                    $"Details:\n\n{ex.StackTrace}");
+                    ErrorMessageForm emf = new(ex.Message, ex.StackTrace ?? string.Empty);
+                    emf.ShowDialog();
                 }
-                if (ok) MessageBox.Show("Готово.");
             }
         }
         private void BtnAutomatic_DragEnter(object sender, DragEventArgs e)
@@ -103,7 +101,7 @@ namespace SubConvert
 
         private void ОПрограмуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutForm af = new AboutForm();
+            AboutForm af = new();
             af.ShowDialog();
         }
     }

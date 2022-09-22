@@ -2,11 +2,6 @@
 {
     public partial class UrlForm : Form
     {
-        public UrlForm() 
-        {
-            InitializeComponent();
-        }
-
         public UrlForm(string text)
         {
             InitializeComponent();

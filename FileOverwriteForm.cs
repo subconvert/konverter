@@ -4,11 +4,6 @@
     {
         public string newFileName = string.Empty;
 
-        public FileOverwriteForm()
-        {
-            InitializeComponent();
-        }
-
         public FileOverwriteForm(string fileName)
         {
             InitializeComponent();

@@ -1,4 +1,5 @@
 ﻿using Cyrillic.Convert;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace SubConvert
@@ -45,6 +46,23 @@ namespace SubConvert
 
             return Regex.Matches(str, cyr).Count > Regex.Matches(str, lat).Count;
 
+        }
+
+        public static string Truncate(this string str, int numberOfNewLines, int maxLineLength)
+        {
+            StringBuilder sb = new();
+            string[] sLines = str.Split(Environment.NewLine);
+
+            for (int i = 0; i < numberOfNewLines; i++)
+                if (sLines[i].Length > maxLineLength)
+                    sb.AppendLine(sLines[i][..maxLineLength]);
+                else
+                    sb.AppendLine(sLines[i]);
+
+            if (sLines.Length > numberOfNewLines)
+                sb.Append("...");
+
+            return sb.ToString();
         }
     }
 }

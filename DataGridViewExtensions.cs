@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Windows.Forms;
 
 namespace SubConvert
 {
@@ -52,6 +53,8 @@ namespace SubConvert
             grid.DataSource = data;
 
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            grid.EnableHeadersVisualStyles = false;
+            grid.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
         }
     }
 }

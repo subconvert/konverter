@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileListForm));
             this.dgvFileList = new System.Windows.Forms.DataGridView();
+            this.contextMenuClipboard = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).BeginInit();
+            this.contextMenuClipboard.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvFileList
@@ -50,6 +54,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvFileList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFileList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvFileList.ContextMenuStrip = this.contextMenuClipboard;
             this.dgvFileList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvFileList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvFileList.Location = new System.Drawing.Point(0, 0);
@@ -64,6 +69,20 @@
             this.dgvFileList.Size = new System.Drawing.Size(824, 526);
             this.dgvFileList.TabIndex = 0;
             // 
+            // contextMenuClipboard
+            // 
+            this.contextMenuClipboard.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemCopy});
+            this.contextMenuClipboard.Name = "contextMenuClipboard";
+            this.contextMenuClipboard.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuClipboard.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuClipboard_ItemClicked);
+            // 
+            // toolStripMenuItemCopy
+            // 
+            this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
+            this.toolStripMenuItemCopy.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemCopy.Text = "Копирај";
+            // 
             // FileListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -75,6 +94,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Списак креираних фајлова";
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).EndInit();
+            this.contextMenuClipboard.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -82,5 +102,7 @@
         #endregion
 
         private DataGridView dgvFileList;
+        private ContextMenuStrip contextMenuClipboard;
+        private ToolStripMenuItem toolStripMenuItemCopy;
     }
 }

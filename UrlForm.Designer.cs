@@ -78,6 +78,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(476, 133);
             this.Name = "UrlForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Грешка";
             this.TopMost = true;
             this.ResumeLayout(false);

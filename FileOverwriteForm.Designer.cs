@@ -106,6 +106,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(471, 215);
             this.Name = "FileOverwriteForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Фајл већ постоји!";
             this.TopMost = true;
             this.ResumeLayout(false);

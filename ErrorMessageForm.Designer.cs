@@ -60,6 +60,7 @@
             this.MinimumSize = new System.Drawing.Size(460, 320);
             this.Name = "ErrorMessageForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Грешка";
             this.TopMost = true;
             this.ResumeLayout(false);

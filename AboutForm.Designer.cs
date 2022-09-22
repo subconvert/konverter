@@ -103,6 +103,7 @@
             this.MinimumSize = new System.Drawing.Size(460, 320);
             this.Name = "AboutForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "О програму";
             this.TopMost = true;
             this.ResumeLayout(false);

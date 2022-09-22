@@ -1,4 +1,5 @@
 ﻿using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 using UtfUnknown;
 
 namespace SubConvert
@@ -22,8 +23,6 @@ namespace SubConvert
                     Folder = Path.GetDirectoryName(filePath) ?? string.Empty
                 });
             }
-
-            dgvFileList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dgvFileList.Bind(files);
 

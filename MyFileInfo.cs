@@ -5,13 +5,13 @@ namespace SubConvert
 {
     public class MyFileInfo
     {
-        [Display(Name = "Фолдер")]
+        [Display(Name = "Фолдер", Order = 0)]
         public string Folder { get; set; }
         
-        [Display(Name = "Назив фајла")]
+        [Display(Name = "Назив фајла", Order = 1)]
         public string FileName { get; set; }
 
-        [Display(Name = "Енкодинг")]
+        [Display(Name = "Енкодинг", Order = 2)]
         public string FileEncoding { get; set; }
     }
 }

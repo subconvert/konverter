@@ -30,14 +30,12 @@ namespace SubConvert
                 {
                     DataGridViewColumn c;
                     if (m.Type == typeof(bool))
-                    {
                         c = new DataGridViewCheckBoxColumn(false);
-                    }
                     else if (m.Type == typeof(bool?))
-                    {
                         c = new DataGridViewCheckBoxColumn(true);
-                    }
-                    else { c = new DataGridViewTextBoxColumn(); }
+                    else 
+                        c = new DataGridViewTextBoxColumn();
+
                     c.DataPropertyName = m.Name;
                     c.Name = m.Name;
                     c.HeaderText = m.HeaderText;
@@ -45,12 +43,15 @@ namespace SubConvert
                     c.DefaultCellStyle.Format = m.Format;
                     c.ReadOnly = m.ReadOnly;
                     c.Visible = m.Visible;
+                    
                     return c;
                 });
                 grid.Columns.Clear();
                 grid.Columns.AddRange(columns.ToArray());
             }
             grid.DataSource = data;
+
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
     }
 }

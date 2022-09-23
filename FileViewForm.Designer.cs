@@ -41,10 +41,6 @@
             this.windows1251ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.алатиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.транслитерацијаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.плејбекToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.зауставиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.пустиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.тестСеекToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlWaveForm = new System.Windows.Forms.Panel();
             this.lblDnDInfo = new System.Windows.Forms.Label();
             this.pnlFileInfo.SuspendLayout();
@@ -108,8 +104,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.снимиКаоToolStripMenuItem,
-            this.алатиToolStripMenuItem,
-            this.плејбекToolStripMenuItem});
+            this.алатиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(641, 24);
@@ -162,37 +157,6 @@
             this.транслитерацијаToolStripMenuItem.Text = "Транслитерација";
             this.транслитерацијаToolStripMenuItem.Click += new System.EventHandler(this.ТранслитерацијаToolStripMenuItem_Click);
             // 
-            // плејбекToolStripMenuItem
-            // 
-            this.плејбекToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.зауставиToolStripMenuItem,
-            this.пустиToolStripMenuItem,
-            this.тестСеекToolStripMenuItem});
-            this.плејбекToolStripMenuItem.Name = "плејбекToolStripMenuItem";
-            this.плејбекToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
-            this.плејбекToolStripMenuItem.Text = "Плејбек";
-            // 
-            // зауставиToolStripMenuItem
-            // 
-            this.зауставиToolStripMenuItem.Name = "зауставиToolStripMenuItem";
-            this.зауставиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.зауставиToolStripMenuItem.Text = "Заустави";
-            this.зауставиToolStripMenuItem.Click += new System.EventHandler(this.зауставиToolStripMenuItem_Click);
-            // 
-            // пустиToolStripMenuItem
-            // 
-            this.пустиToolStripMenuItem.Name = "пустиToolStripMenuItem";
-            this.пустиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.пустиToolStripMenuItem.Text = "Пусти";
-            this.пустиToolStripMenuItem.Click += new System.EventHandler(this.пустиToolStripMenuItem_Click);
-            // 
-            // тестСеекToolStripMenuItem
-            // 
-            this.тестСеекToolStripMenuItem.Name = "тестСеекToolStripMenuItem";
-            this.тестСеекToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.тестСеекToolStripMenuItem.Text = "Тест сеек";
-            this.тестСеекToolStripMenuItem.Click += new System.EventHandler(this.тестСеекToolStripMenuItem_Click);
-            // 
             // pnlWaveForm
             // 
             this.pnlWaveForm.AllowDrop = true;
@@ -230,7 +194,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FileViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FileViewForm_FormClosing);
             this.Load += new System.EventHandler(this.FileViewForm_Load);
             this.pnlFileInfo.ResumeLayout(false);
             this.pnlFileInfo.PerformLayout();
@@ -258,9 +221,5 @@
         private ToolStripMenuItem транслитерацијаToolStripMenuItem;
         private Panel pnlWaveForm;
         private Label lblDnDInfo;
-        private ToolStripMenuItem плејбекToolStripMenuItem;
-        private ToolStripMenuItem зауставиToolStripMenuItem;
-        private ToolStripMenuItem пустиToolStripMenuItem;
-        private ToolStripMenuItem тестСеекToolStripMenuItem;
     }
 }

@@ -1,23 +1,21 @@
 ﻿using Cyrillic.Convert;
 using NAudio.Wave;
 using NAudio.WaveFormRenderer;
-using System.Drawing.Imaging;
 using System.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Text.RegularExpressions;
+using Button = System.Windows.Forms.Button;
 
 namespace SubConvert
 {
     public partial class FileViewForm : Form
     {
         private MyFileInfo _mfi;
-        private DirectSoundOut _dso;
 
         public FileViewForm(MyFileInfo mfi)
         {
             InitializeComponent();
 
             _mfi = mfi;
-            _dso = new();
         }
 
         private void FileViewForm_Load(object sender, EventArgs e)
@@ -170,7 +168,6 @@ namespace SubConvert
                     string[] droppedFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
 
                     lblDnDInfo.Visible = true;
-                    _dso.Stop();
 
                     using (MediaFoundationReader mfReader = new(droppedFiles[0])) //new("https://s5.voscast.com:10151/stream");
                     {
@@ -192,9 +189,57 @@ namespace SubConvert
                         pnlWaveForm.BackgroundImage = image;
                     }
 
-                    using MediaFoundationReader mfReader2 = new(droppedFiles[0]);
-                    _dso.Init(mfReader2);
-                    _dso.Play();
+                    var wo = new WaveOutEvent();
+                    var af = new AudioFileReader(droppedFiles[0]);
+                    var closing = false;
+                    wo.PlaybackStopped += (s, a) => { if (closing) { wo.Dispose(); af.Dispose(); } };
+                    wo.Init(af);
+
+                    var f = new Form();
+
+                    var flp = new FlowLayoutPanel() { FlowDirection = FlowDirection.LeftToRight };
+                    flp.Dock = DockStyle.Fill;
+
+                    var b = new Button() { Text = "Play" };
+                    b.Click += (s, a) => wo.Play();
+                    var b2 = new Button() { Text = "Stop" };
+                    b2.Click += (s, a) => wo.Stop();
+                    var b3 = new Button { Text = "Rewind" };
+                    b3.Click += (s, a) => af.Position = 0;
+                    var b4 = new Button { Text = "Seek to current line" };
+                    b4.Click += (s, a) =>
+                    {
+                        try
+                        {
+                            //match 00:00:36
+                            int currentLineIndex = rtbViewFile.GetFirstCharIndexOfCurrentLine();
+                            Regex r = new Regex("(?<hours>\\d\\d):(?<minutes>\\d\\d):(?<seconds>\\d\\d)");
+                            Match m = r.Match(rtbViewFile.Text.Substring(rtbViewFile.GetFirstCharIndexOfCurrentLine(), 8));
+
+                            string hours = m.Groups["hours"].Value;
+                            string minutes = m.Groups["minutes"].Value;
+                            string seconds = m.Groups["seconds"].Value;
+
+                            TimeSpan ts = new(int.Parse(hours), int.Parse(minutes), int.Parse(seconds));
+
+                            af.CurrentTime = ts;
+                        }
+                        catch (Exception ex)
+                        {
+                            ErrorMessageForm emf = new(ex.Message, ex.StackTrace ?? string.Empty);
+                            emf.ShowDialog();
+                        }
+                    };
+
+                    flp.Controls.Add(b);
+                    flp.Controls.Add(b2);
+                    flp.Controls.Add(b3);
+                    flp.Controls.Add(b4);
+
+                    f.Controls.Add(flp);
+
+                    f.FormClosing += (s, a) => { closing = true; wo.Stop(); };
+                    f.Show();
                 }
                 catch (Exception ex)
                 {
@@ -202,32 +247,6 @@ namespace SubConvert
                     emf.ShowDialog();
                 }
             }
-        }
-
-        private void FileViewForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _dso.Stop();
-        }
-
-        private void зауставиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _dso.Stop();
-        }
-
-        private void пустиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _dso.Play();
-        }
-
-        private void тестСеекToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //TODO: not working
-            _dso.Stop();
-            TimeSpan ts = _dso.PlaybackPosition;
-            _dso.Play();
-
-            ErrorMessageForm efm = new("Pozicija", ts.ToString());
-            efm.Show();
         }
     }
 }

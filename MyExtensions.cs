@@ -53,11 +53,12 @@ namespace SubConvert
             StringBuilder sb = new();
             string[] sLines = str.Split(Environment.NewLine);
 
-            for (int i = 0; i < numberOfNewLines; i++)
-                if (sLines[i].Length > maxLineLength)
+
+            if (sLines.Length > maxLineLength)
+                for (int i = 0; i < numberOfNewLines; i++)
                     sb.AppendLine(sLines[i][..maxLineLength]);
-                else
-                    sb.AppendLine(sLines[i]);
+            else
+                sb.Append(str);
 
             if (sLines.Length > numberOfNewLines)
                 sb.Append("...");

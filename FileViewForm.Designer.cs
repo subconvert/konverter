@@ -39,8 +39,17 @@
             this.uTF8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windows1250ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windows1251ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.алатиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.транслитерацијаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.плејбекToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.зауставиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.пустиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.тестСеекToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlWaveForm = new System.Windows.Forms.Panel();
+            this.lblDnDInfo = new System.Windows.Forms.Label();
             this.pnlFileInfo.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.pnlWaveForm.SuspendLayout();
             this.SuspendLayout();
             // 
             // rtbViewFile
@@ -48,7 +57,7 @@
             this.rtbViewFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbViewFile.Location = new System.Drawing.Point(0, 85);
             this.rtbViewFile.Name = "rtbViewFile";
-            this.rtbViewFile.Size = new System.Drawing.Size(641, 345);
+            this.rtbViewFile.Size = new System.Drawing.Size(641, 245);
             this.rtbViewFile.TabIndex = 1;
             this.rtbViewFile.Text = "";
             // 
@@ -98,7 +107,9 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.снимиКаоToolStripMenuItem});
+            this.снимиКаоToolStripMenuItem,
+            this.алатиToolStripMenuItem,
+            this.плејбекToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(641, 24);
@@ -112,29 +123,99 @@
             this.windows1250ToolStripMenuItem,
             this.windows1251ToolStripMenuItem});
             this.снимиКаоToolStripMenuItem.Name = "снимиКаоToolStripMenuItem";
-            this.снимиКаоToolStripMenuItem.Size = new System.Drawing.Size(196, 20);
-            this.снимиКаоToolStripMenuItem.Text = "Сними титл у другом енкодингу";
+            this.снимиКаоToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.снимиКаоToolStripMenuItem.Text = "Фајл";
             // 
             // uTF8ToolStripMenuItem
             // 
             this.uTF8ToolStripMenuItem.Name = "uTF8ToolStripMenuItem";
-            this.uTF8ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.uTF8ToolStripMenuItem.Text = "UTF-8";
+            this.uTF8ToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.uTF8ToolStripMenuItem.Text = "Сними као UTF-8";
             this.uTF8ToolStripMenuItem.Click += new System.EventHandler(this.UTF8ToolStripMenuItem_Click);
             // 
             // windows1250ToolStripMenuItem
             // 
             this.windows1250ToolStripMenuItem.Name = "windows1250ToolStripMenuItem";
-            this.windows1250ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.windows1250ToolStripMenuItem.Text = "windows-1250";
+            this.windows1250ToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.windows1250ToolStripMenuItem.Text = "Сними као windows-1250";
             this.windows1250ToolStripMenuItem.Click += new System.EventHandler(this.Windows1250ToolStripMenuItem_Click);
             // 
             // windows1251ToolStripMenuItem
             // 
             this.windows1251ToolStripMenuItem.Name = "windows1251ToolStripMenuItem";
-            this.windows1251ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.windows1251ToolStripMenuItem.Text = "windows-1251";
+            this.windows1251ToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.windows1251ToolStripMenuItem.Text = "Сними као windows-1251";
             this.windows1251ToolStripMenuItem.Click += new System.EventHandler(this.Windows1251ToolStripMenuItem_Click);
+            // 
+            // алатиToolStripMenuItem
+            // 
+            this.алатиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.транслитерацијаToolStripMenuItem});
+            this.алатиToolStripMenuItem.Name = "алатиToolStripMenuItem";
+            this.алатиToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.алатиToolStripMenuItem.Text = "Алати";
+            // 
+            // транслитерацијаToolStripMenuItem
+            // 
+            this.транслитерацијаToolStripMenuItem.Name = "транслитерацијаToolStripMenuItem";
+            this.транслитерацијаToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.транслитерацијаToolStripMenuItem.Text = "Транслитерација";
+            this.транслитерацијаToolStripMenuItem.Click += new System.EventHandler(this.ТранслитерацијаToolStripMenuItem_Click);
+            // 
+            // плејбекToolStripMenuItem
+            // 
+            this.плејбекToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.зауставиToolStripMenuItem,
+            this.пустиToolStripMenuItem,
+            this.тестСеекToolStripMenuItem});
+            this.плејбекToolStripMenuItem.Name = "плејбекToolStripMenuItem";
+            this.плејбекToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.плејбекToolStripMenuItem.Text = "Плејбек";
+            // 
+            // зауставиToolStripMenuItem
+            // 
+            this.зауставиToolStripMenuItem.Name = "зауставиToolStripMenuItem";
+            this.зауставиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.зауставиToolStripMenuItem.Text = "Заустави";
+            this.зауставиToolStripMenuItem.Click += new System.EventHandler(this.зауставиToolStripMenuItem_Click);
+            // 
+            // пустиToolStripMenuItem
+            // 
+            this.пустиToolStripMenuItem.Name = "пустиToolStripMenuItem";
+            this.пустиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.пустиToolStripMenuItem.Text = "Пусти";
+            this.пустиToolStripMenuItem.Click += new System.EventHandler(this.пустиToolStripMenuItem_Click);
+            // 
+            // тестСеекToolStripMenuItem
+            // 
+            this.тестСеекToolStripMenuItem.Name = "тестСеекToolStripMenuItem";
+            this.тестСеекToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.тестСеекToolStripMenuItem.Text = "Тест сеек";
+            this.тестСеекToolStripMenuItem.Click += new System.EventHandler(this.тестСеекToolStripMenuItem_Click);
+            // 
+            // pnlWaveForm
+            // 
+            this.pnlWaveForm.AllowDrop = true;
+            this.pnlWaveForm.Controls.Add(this.lblDnDInfo);
+            this.pnlWaveForm.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlWaveForm.Location = new System.Drawing.Point(0, 330);
+            this.pnlWaveForm.Name = "pnlWaveForm";
+            this.pnlWaveForm.Size = new System.Drawing.Size(641, 100);
+            this.pnlWaveForm.TabIndex = 4;
+            this.pnlWaveForm.DragDrop += new System.Windows.Forms.DragEventHandler(this.PnlWaveForm_DragDrop);
+            this.pnlWaveForm.DragEnter += new System.Windows.Forms.DragEventHandler(this.PnlWaveForm_DragEnter);
+            // 
+            // lblDnDInfo
+            // 
+            this.lblDnDInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDnDInfo.AutoSize = true;
+            this.lblDnDInfo.Location = new System.Drawing.Point(241, 42);
+            this.lblDnDInfo.Name = "lblDnDInfo";
+            this.lblDnDInfo.Size = new System.Drawing.Size(151, 15);
+            this.lblDnDInfo.TabIndex = 0;
+            this.lblDnDInfo.Text = "Превуци медија фајл овде";
             // 
             // FileViewForm
             // 
@@ -142,18 +223,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(641, 430);
             this.Controls.Add(this.rtbViewFile);
+            this.Controls.Add(this.pnlWaveForm);
             this.Controls.Add(this.pnlFileInfo);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FileViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Преглед фајла";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FileViewForm_FormClosing);
             this.Load += new System.EventHandler(this.FileViewForm_Load);
             this.pnlFileInfo.ResumeLayout(false);
             this.pnlFileInfo.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.pnlWaveForm.ResumeLayout(false);
+            this.pnlWaveForm.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,5 +254,13 @@
         private ToolStripMenuItem uTF8ToolStripMenuItem;
         private ToolStripMenuItem windows1250ToolStripMenuItem;
         private ToolStripMenuItem windows1251ToolStripMenuItem;
+        private ToolStripMenuItem алатиToolStripMenuItem;
+        private ToolStripMenuItem транслитерацијаToolStripMenuItem;
+        private Panel pnlWaveForm;
+        private Label lblDnDInfo;
+        private ToolStripMenuItem плејбекToolStripMenuItem;
+        private ToolStripMenuItem зауставиToolStripMenuItem;
+        private ToolStripMenuItem пустиToolStripMenuItem;
+        private ToolStripMenuItem тестСеекToolStripMenuItem;
     }
 }

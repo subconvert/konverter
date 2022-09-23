@@ -23,11 +23,9 @@ namespace SubConvert
             try
             {
                 if (_mfi.Folder != null && _mfi.FileName != null && _mfi.FileEncoding != null)
-                    FillRichText(Path.Combine(_mfi.Folder, _mfi.FileName), _mfi.FileEncoding);
+                    FillRichTextFromFile(Path.Combine(_mfi.Folder, _mfi.FileName), _mfi.FileEncoding);
 
                 RefreshLabels();
-
-
             }
             catch (Exception ex)
             {
@@ -47,7 +45,7 @@ namespace SubConvert
             }
         }
 
-        public void FillRichText(string filePath, string encoding)
+        public void FillRichTextFromFile(string filePath, string encoding)
         {
             if (encoding.ToLower().Equals("windows-1250"))
                 rtbViewFile.Text = File.ReadAllText(filePath, Encoding.GetEncoding(1250));
@@ -149,14 +147,13 @@ namespace SubConvert
         {
             if (e.Data != null && e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                e.Effect = DragDropEffects.All;
+                e.Effect = DragDropEffects.Link;
             }
             else
             {
                 e.Effect = DragDropEffects.None;
             }
         }
-
 
         private void PnlWaveForm_DragDrop(object sender, DragEventArgs e)
         {
@@ -168,6 +165,8 @@ namespace SubConvert
                     string[] droppedFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
 
                     lblDnDInfo.Visible = true;
+
+                    Image image;
 
                     using (MediaFoundationReader mfReader = new(droppedFiles[0])) //new("https://s5.voscast.com:10151/stream");
                     {
@@ -182,31 +181,33 @@ namespace SubConvert
                         myRendererSettings.BottomHeight = 64;
 
                         WaveFormRenderer renderer = new WaveFormRenderer();
-                        Image image = renderer.Render(mfReader, averagePeakProvider, myRendererSettings);
+                        image = renderer.Render(mfReader, averagePeakProvider, myRendererSettings);
 
-                        lblDnDInfo.Visible = false;
-                        pnlWaveForm.BackgroundImageLayout = ImageLayout.Stretch;
-                        pnlWaveForm.BackgroundImage = image;
+
                     }
 
-                    var wo = new WaveOutEvent();
-                    var af = new AudioFileReader(droppedFiles[0]);
-                    var closing = false;
+                    WaveOutEvent wo = new();
+                    AudioFileReader af = new(droppedFiles[0]);
+                    bool closing = false;
+
                     wo.PlaybackStopped += (s, a) => { if (closing) { wo.Dispose(); af.Dispose(); } };
                     wo.Init(af);
 
-                    var f = new Form();
+                    //var f = new Form();
 
-                    var flp = new FlowLayoutPanel() { FlowDirection = FlowDirection.LeftToRight };
-                    flp.Dock = DockStyle.Fill;
+                    FlowLayoutPanel flp = new()
+                    {
+                        FlowDirection = FlowDirection.LeftToRight,
+                        Dock = DockStyle.Fill
+                    };
 
-                    var b = new Button() { Text = "Play" };
+                    var b = new Button() { Text = "Play", Height = 32 };
                     b.Click += (s, a) => wo.Play();
-                    var b2 = new Button() { Text = "Stop" };
+                    var b2 = new Button() { Text = "Stop", Height = 32 };
                     b2.Click += (s, a) => wo.Stop();
-                    var b3 = new Button { Text = "Rewind" };
+                    var b3 = new Button { Text = "Rewind", Height = 32 };
                     b3.Click += (s, a) => af.Position = 0;
-                    var b4 = new Button { Text = "Seek to current line" };
+                    var b4 = new Button { Text = "Seek to current line", Height = 32, Width = 128 };
                     b4.Click += (s, a) =>
                     {
                         try
@@ -236,10 +237,19 @@ namespace SubConvert
                     flp.Controls.Add(b3);
                     flp.Controls.Add(b4);
 
-                    f.Controls.Add(flp);
+                    flp.BackColor = Color.Empty;
 
-                    f.FormClosing += (s, a) => { closing = true; wo.Stop(); };
-                    f.Show();
+                    FormClosing += (s, a) => { closing = true; wo.Stop(); };
+
+                    lblDnDInfo.Visible = false;
+                    flp.BackgroundImageLayout = ImageLayout.Stretch;
+                    flp.BackgroundImage = image;
+
+                    pnlWaveForm.Controls.Add(flp);
+
+
+                    //f.FormClosing += (s, a) => { closing = true; wo.Stop(); };
+                    //f.Show();
                 }
                 catch (Exception ex)
                 {

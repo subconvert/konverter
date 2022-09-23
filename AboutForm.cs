@@ -19,39 +19,56 @@ namespace SubConvert
 
         private void LlUTFUnknown_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            string url = "https://github.com/CharsetDetector/UTF-unknown";
             try
             {
-                VisitLink("https://github.com/CharsetDetector/UTF-unknown");
+                VisitLink(url);
             }
             catch (Exception)
             {
-                UrlForm uf = new("https://github.com/CharsetDetector/UTF-unknown");
+                UrlForm uf = new(url);
                 uf.ShowDialog();
             }
         }
 
         private void LlCyrillicConvert_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            string url = "https://github.com/bajceticnenad/Cyrillic.Convert";
             try
             {
-                VisitLink("https://github.com/bajceticnenad/Cyrillic.Convert");
+                VisitLink(url);
             }
             catch (Exception)
             {
-                UrlForm uf = new("https://github.com/bajceticnenad/Cyrillic.Convert");
+                UrlForm uf = new(url);
                 uf.ShowDialog();
             }
         }
 
         private void LlMail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            string url = "mailto:subconvert@outlook.com";
             try
             {
-                VisitLink("mailto:subconvert@outlook.com");
+                VisitLink(url);
             }
             catch (Exception)
             {
-                UrlForm uf = new("mailto:subconvert@outlook.com");
+                UrlForm uf = new(url);
+                uf.ShowDialog();
+            }
+        }
+
+        private void lblNAudio_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string url = "https://github.com/naudio/NAudio";
+            try
+            {
+                VisitLink(url);
+            }
+            catch (Exception)
+            {
+                UrlForm uf = new(url);
                 uf.ShowDialog();
             }
         }

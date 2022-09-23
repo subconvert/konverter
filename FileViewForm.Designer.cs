@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileViewForm));
             this.rtbViewFile = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.копирајToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlFileInfo = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblEncoding = new System.Windows.Forms.Label();
@@ -43,6 +46,8 @@
             this.транслитерацијаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlWaveForm = new System.Windows.Forms.Panel();
             this.lblDnDInfo = new System.Windows.Forms.Label();
+            this.транслитерујToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.pnlFileInfo.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.pnlWaveForm.SuspendLayout();
@@ -50,12 +55,28 @@
             // 
             // rtbViewFile
             // 
+            this.rtbViewFile.ContextMenuStrip = this.contextMenuStrip1;
             this.rtbViewFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbViewFile.Location = new System.Drawing.Point(0, 85);
             this.rtbViewFile.Name = "rtbViewFile";
             this.rtbViewFile.Size = new System.Drawing.Size(641, 245);
             this.rtbViewFile.TabIndex = 1;
             this.rtbViewFile.Text = "";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.копирајToolStripMenuItem,
+            this.транслитерујToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            // 
+            // копирајToolStripMenuItem
+            // 
+            this.копирајToolStripMenuItem.Name = "копирајToolStripMenuItem";
+            this.копирајToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.копирајToolStripMenuItem.Text = "Копирај";
+            this.копирајToolStripMenuItem.Click += new System.EventHandler(this.КопирајToolStripMenuItem_Click);
             // 
             // pnlFileInfo
             // 
@@ -181,6 +202,13 @@
             this.lblDnDInfo.TabIndex = 0;
             this.lblDnDInfo.Text = "Превуци медија фајл овде";
             // 
+            // транслитерујToolStripMenuItem
+            // 
+            this.транслитерујToolStripMenuItem.Name = "транслитерујToolStripMenuItem";
+            this.транслитерујToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.транслитерујToolStripMenuItem.Text = "Транслитеруј";
+            this.транслитерујToolStripMenuItem.Click += new System.EventHandler(this.транслитерујToolStripMenuItem_Click);
+            // 
             // FileViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -195,6 +223,7 @@
             this.Name = "FileViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FileViewForm_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.pnlFileInfo.ResumeLayout(false);
             this.pnlFileInfo.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -221,5 +250,8 @@
         private ToolStripMenuItem транслитерацијаToolStripMenuItem;
         private Panel pnlWaveForm;
         private Label lblDnDInfo;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem копирајToolStripMenuItem;
+        private ToolStripMenuItem транслитерујToolStripMenuItem;
     }
 }

@@ -247,9 +247,6 @@ namespace SubConvert
 
                     pnlWaveForm.Controls.Add(flp);
 
-
-                    //f.FormClosing += (s, a) => { closing = true; wo.Stop(); };
-                    //f.Show();
                 }
                 catch (Exception ex)
                 {
@@ -257,6 +254,20 @@ namespace SubConvert
                     emf.ShowDialog();
                 }
             }
+        }
+
+        private void КопирајToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(rtbViewFile.SelectedText);
+        }
+
+        private void транслитерујToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string selectedText = rtbViewFile.SelectedText;
+            if (selectedText.IsCyrillic())
+                rtbViewFile.SelectedText = selectedText.ToSerbianLatin();
+            else
+                rtbViewFile.SelectedText = selectedText.ToSerbianCyrilic().RestoreTags();
         }
     }
 }

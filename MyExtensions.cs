@@ -26,7 +26,7 @@ namespace SubConvert
             s = s.Replace("{/у}", "{/u}");
 
             s = s.Replace("</фонт>", "</font>");
-            Regex r = new("<(?<fontTag>фонт цолор=(\"?)(.+)(\"?))>");
+            Regex r = new("(?<fontTag><фонт цолор=\"(#?)(.+)(\")>)");
 
             s = r.Replace(s, ProcessFontTag);
 
@@ -36,7 +36,7 @@ namespace SubConvert
         private static string ProcessFontTag(Match m)
         {
             string tagName = m.Groups["fontTag"].Value;
-            return $"<{tagName.ToSerbianLatin()}>";
+            return $"{tagName.ToSerbianLatin()}";
         }
 
         public static bool IsCyrillic(this string str)

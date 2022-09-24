@@ -59,9 +59,9 @@ namespace SubConvert
             }
         }
 
-        private void lblNAudio_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lblLibVLCSharp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string url = "https://github.com/naudio/NAudio";
+            string url = "https://code.videolan.org/videolan/LibVLCSharp";
             try
             {
                 VisitLink(url);
@@ -77,5 +77,6 @@ namespace SubConvert
         {
             Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
         }
+
     }
 }

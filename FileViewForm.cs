@@ -1,9 +1,7 @@
 ﻿using Cyrillic.Convert;
-using NAudio.Wave;
-using NAudio.WaveFormRenderer;
+using LibVLCSharp.Shared;
 using System.Text;
 using System.Text.RegularExpressions;
-using Button = System.Windows.Forms.Button;
 
 namespace SubConvert
 {
@@ -11,11 +9,18 @@ namespace SubConvert
     {
         private MyFileInfo _mfi;
 
+        public LibVLC _libVLC;
+        public MediaPlayer _mp;
+
+
         public FileViewForm(MyFileInfo mfi)
         {
             InitializeComponent();
 
             _mfi = mfi;
+
+            _libVLC = new LibVLC();
+            _mp = new MediaPlayer(_libVLC);
         }
 
         private void FileViewForm_Load(object sender, EventArgs e)
@@ -26,6 +31,9 @@ namespace SubConvert
                     FillRichTextFromFile(Path.Combine(_mfi.Folder, _mfi.FileName), _mfi.FileEncoding);
 
                 RefreshLabels();
+
+                videoView1.MediaPlayer = _mp;
+
             }
             catch (Exception ex)
             {
@@ -161,92 +169,15 @@ namespace SubConvert
             {
                 try
                 {
-                    //TODO: move to a diff thread
                     string[] droppedFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                    lblDnDInfo.Visible = true;
+                    var media = new Media(_libVLC, droppedFiles[0], FromType.FromPath);
+                    media.Parse(MediaParseOptions.ParseNetwork);
+                    videoView1.Visible = true;
 
-                    Image image;
+                    _mp.Media = media;
 
-                    using (MediaFoundationReader mfReader = new(droppedFiles[0])) //new("https://s5.voscast.com:10151/stream");
-                    {
-                        MaxPeakProvider maxPeakProvider = new MaxPeakProvider();
-                        RmsPeakProvider rmsPeakProvider = new RmsPeakProvider(100); // e.g. 200
-                        SamplingPeakProvider samplingPeakProvider = new SamplingPeakProvider(200); // e.g. 200
-                        AveragePeakProvider averagePeakProvider = new AveragePeakProvider(4); // e.g. 4
-
-                        StandardWaveFormRendererSettings myRendererSettings = new StandardWaveFormRendererSettings();
-                        myRendererSettings.Width = 1080;
-                        myRendererSettings.TopHeight = 64;
-                        myRendererSettings.BottomHeight = 64;
-
-                        WaveFormRenderer renderer = new WaveFormRenderer();
-                        image = renderer.Render(mfReader, averagePeakProvider, myRendererSettings);
-
-
-                    }
-
-                    WaveOutEvent wo = new();
-                    AudioFileReader af = new(droppedFiles[0]);
-                    bool closing = false;
-
-                    wo.PlaybackStopped += (s, a) => { if (closing) { wo.Dispose(); af.Dispose(); } };
-                    wo.Init(af);
-
-                    //var f = new Form();
-
-                    FlowLayoutPanel flp = new()
-                    {
-                        FlowDirection = FlowDirection.LeftToRight,
-                        Dock = DockStyle.Fill
-                    };
-
-                    var b = new Button() { Text = "Play", Height = 32 };
-                    b.Click += (s, a) => wo.Play();
-                    var b2 = new Button() { Text = "Stop", Height = 32 };
-                    b2.Click += (s, a) => wo.Stop();
-                    var b3 = new Button { Text = "Rewind", Height = 32 };
-                    b3.Click += (s, a) => af.Position = 0;
-                    var b4 = new Button { Text = "Seek to current line", Height = 32, Width = 128 };
-                    b4.Click += (s, a) =>
-                    {
-                        try
-                        {
-                            //match 00:00:36
-                            int currentLineIndex = rtbViewFile.GetFirstCharIndexOfCurrentLine();
-                            Regex r = new Regex("(?<hours>\\d\\d):(?<minutes>\\d\\d):(?<seconds>\\d\\d)");
-                            Match m = r.Match(rtbViewFile.Text.Substring(rtbViewFile.GetFirstCharIndexOfCurrentLine(), 8));
-
-                            string hours = m.Groups["hours"].Value;
-                            string minutes = m.Groups["minutes"].Value;
-                            string seconds = m.Groups["seconds"].Value;
-
-                            TimeSpan ts = new(int.Parse(hours), int.Parse(minutes), int.Parse(seconds));
-
-                            af.CurrentTime = ts;
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorMessageForm emf = new(ex.Message, ex.StackTrace ?? string.Empty);
-                            emf.ShowDialog();
-                        }
-                    };
-
-                    flp.Controls.Add(b);
-                    flp.Controls.Add(b2);
-                    flp.Controls.Add(b3);
-                    flp.Controls.Add(b4);
-
-                    flp.BackColor = Color.Empty;
-
-                    FormClosing += (s, a) => { closing = true; wo.Stop(); };
-
-                    lblDnDInfo.Visible = false;
-                    flp.BackgroundImageLayout = ImageLayout.Stretch;
-                    flp.BackgroundImage = image;
-
-                    pnlWaveForm.Controls.Add(flp);
-
+                    ThreadPool.QueueUserWorkItem(_ => _mp.Play());
                 }
                 catch (Exception ex)
                 {
@@ -268,6 +199,37 @@ namespace SubConvert
                 rtbViewFile.SelectedText = selectedText.ToSerbianLatin();
             else
                 rtbViewFile.SelectedText = selectedText.ToSerbianCyrilic().RestoreTags();
+        }
+
+        private void FileViewForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _mp.Stop();
+            _mp.Dispose();
+            _libVLC.Dispose();
+        }
+
+        private void скочиНаВремеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //match 00:00:36
+                int currentLineIndex = rtbViewFile.GetFirstCharIndexOfCurrentLine();
+                Regex r = new Regex("(?<hours>\\d\\d):(?<minutes>\\d\\d):(?<seconds>\\d\\d)");
+                Match m = r.Match(rtbViewFile.Text.Substring(rtbViewFile.GetFirstCharIndexOfCurrentLine(), 8));
+
+                string hours = m.Groups["hours"].Value;
+                string minutes = m.Groups["minutes"].Value;
+                string seconds = m.Groups["seconds"].Value;
+
+                TimeSpan ts = new(int.Parse(hours), int.Parse(minutes), int.Parse(seconds));
+
+                ThreadPool.QueueUserWorkItem(_ => _mp.SeekTo(ts));
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageForm emf = new(ex.Message, ex.StackTrace ?? string.Empty);
+                emf.ShowDialog();
+            }
         }
     }
 }

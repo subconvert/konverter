@@ -16,11 +16,11 @@
 
   <ItemGroup>
     <PackageReference Include="Cyrillic.Convert" Version="2.2.1" />
-    <PackageReference Include="NAudio" Version="2.1.0" />
-    <PackageReference Include="NAudio.WaveFormRenderer" Version="2.0.0" />
-    <PackageReference Include="NAudio.WinForms" Version="2.1.0" />
+    <PackageReference Include="LibVLCSharp" Version="3.6.6" />
+    <PackageReference Include="LibVLCSharp.WinForms" Version="3.6.6" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
     <PackageReference Include="UTF.Unknown" Version="2.5.1" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.17.4" />
   </ItemGroup>
 
   <ItemGroup>
